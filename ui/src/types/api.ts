@@ -1,0 +1,51 @@
+/**
+ * API type definitions for Config Service
+ */
+
+export interface Application {
+  id: string;
+  name: string;
+  description?: string;
+  created_at: string;
+  updated_at: string;
+  configuration_ids: string[];
+}
+
+export interface ApplicationCreate {
+  name: string;
+  description?: string;
+}
+
+export interface ApplicationUpdate {
+  name: string;
+  description?: string;
+}
+
+export interface Configuration {
+  id: string;
+  application_id: string;
+  name: string;
+  description?: string;
+  settings: Record<string, string>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ConfigurationCreate {
+  application_id: string;
+  name: string;
+  description?: string;
+  settings: Record<string, string>;
+}
+
+export interface ConfigurationUpdate {
+  name?: string;
+  description?: string;
+  settings?: Record<string, string>;
+}
+
+export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
+
+export type ApiResult<T> = 
+  | { success: true; data: T }
+  | { success: false; error: string; status?: number };

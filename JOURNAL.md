@@ -64,3 +64,13 @@
 - Output: prompts/5-admin-ui-plan.md
 - Cost : $1 plus
 - Reflections: seems complete - too much to Qa properly
+
+## Implement the Admin UI plan
+
+- Prompt: Read @/prompts/5-admin-ui-plan.md and follow the instructions at the top of the file.
+- Tool: Cline
+- Mode: Act
+- Context: Clean
+- Model: Claude Sonnet 4
+- Input: prompts/5-admin-ui-plan.md
+- Output: ui/

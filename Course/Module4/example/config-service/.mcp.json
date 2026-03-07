@@ -1,0 +1,26 @@
+{
+  "mcpServers":{
+    "postgres": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "DATABASE_URI",
+        "crystaldba/postgres-mcp",
+        "--access-mode=restricted"
+      ],
+      "env": {
+        "DATABASE_URI": "postgresql://config_user:config_pass@localhost:5432/config_db"
+      }
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ctx7sk-ec6fe045-b5ed-4567-b822-ad40c9706642"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,41 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Configuration Service - Complete Observability Dashboard",
+    "description": "Comprehensive observability dashboard for Configuration Service - validates all telemetry types",
+    "tags": ["config-service", "observability", "validation"],
+    "timezone": "",
+    "refresh": "5s",
+    "version": 2,
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Container CPU Usage",
+        "type": "timeseries",
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 24},
+        "targets": [
+          {"expr": "rate(container_cpu_usage_seconds_total{cpu=\"total\",id=~\"/docker/.+\"}[5m]) * 100", "legendFormat": "{{id}}"},
+          {"expr": "rate(container_cpu_usage_seconds_total{cpu=\"total\",id=\"/\"}[5m]) * 100", "legendFormat": "Host System"},
+          {"expr": "rate(process_cpu_seconds_total[1m]) * 100", "legendFormat": "{{job}} process"}
+        ],
+        "fieldConfig": {"defaults": {"unit": "percent"}}
+      },
+      {
+        "id": 2,
+        "title": "Memory Usage",
+        "type": "timeseries",
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 24},
+        "targets": [
+          {"expr": "container_memory_usage_bytes{id=~\"/docker/.+\"}", "legendFormat": "{{id}}"},
+          {"expr": "container_memory_usage_bytes{id=\"/\"}", "legendFormat": "Host System"},
+          {"expr": "process_resident_memory_bytes", "legendFormat": "{{job}} RSS"}
+        ],
+        "fieldConfig": {"defaults": {"unit": "bytes"}}
+      }
+    ]
+  }
+}

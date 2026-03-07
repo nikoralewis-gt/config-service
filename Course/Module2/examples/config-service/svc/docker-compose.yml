@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:17.5
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME:-config_db}
+      - POSTGRES_USER=${DATABASE_USER:-config_user}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-config_pass}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${DATABASE_PORT:-5433}:5432"
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-config_user} -d ${DATABASE_NAME:-config_db}"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+    networks:
+      - config-service-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - "5050:5050"
+    networks:
+      - config-service-network
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+
+networks:
+  config-service-network:
+    driver: bridge

@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make test-ui:*)",
+      "Bash(npm run build:*)",
+      "Bash(make:*)",
+      "Bash(docker compose:*)",
+      "Bash(uv sync:*)",
+      "Read(//Users/don/hypr/ai-course/module3/examples/after/**)",
+      "Bash(uv run:*)",
+      "Bash(uv add:*)",
+      "Bash(curl:*)",
+      "Bash(python:*)",
+      "Bash(cat:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose:*)",
+      "WebSearch",
+      "Bash(find:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(git add:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker inspect:*)",
+      "Bash(docker logs:*)",
+      "mcp__trello-mcp__get_boards",
+      "mcp__postgres__list_objects",
+      "mcp__postgres__execute_sql"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "postgres"
+  ]
+}

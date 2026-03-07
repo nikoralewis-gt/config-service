@@ -44,4 +44,12 @@
 - Cost : 0.37
 - Reflections: seems to be a lot of technical , almost code created
 
-
+### Entry 3 – Execute plan
+- Prompt:  Please create a Config API Service in the `config-service` folder, according to the Implementation Plan defined in @/prompts/3-create-web-api-plan.md
+- Mode: Act
+- Context: Clean
+- Model: Claude Sonnet 4
+- Input: prompts/3-web-api-plan.md
+- Output: config-service/
+- Cost : $2 plus
+- Reflections: loads of code created .. took about 10 mins

@@ -11,6 +11,16 @@ The implementation plan should:
 - NOT add any additional dependencies without explicit approval
 - Ask for clarification if any requirements are unclear or ambiguous
 
+## Project Overview
+
+A small backend service that stores a list of applications. Each application should have configuration settings made up of name/value pairs.
+
+## Core Requirements
+
+The service should support the following operations:
+- Add, update, delete, and list applications
+- Add, update, delete, and list configuration settings for each application
+
 ## Tech Stack
 
 | Area                 | Choice     | Version |
@@ -25,10 +35,6 @@ The implementation plan should:
 | Python DB adapter    | sqlite3    | (built-in) |
 
 **IMPORTANT:** Use these specific version ranges in the implementation plan.
-
-## Project Overview
-
-A backend service that manages applications and their configuration settings. Each application can have multiple configuration settings stored as name/value pairs.
 
 ## Data Models
 

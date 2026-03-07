@@ -53,3 +53,14 @@
 - Output: config-service/
 - Cost : $2 plus
 - Reflections: loads of code created .. took about 10 mins
+
+### Admin UI create the plan
+- Prompt: Read @/prompts/4-admin-ui-prompt.md and follow the instructions at the top of the file.
+- Tool: Cline
+- Mode: Plan
+- Context: Clean
+- Model: Claude 3.7 Sonnet
+- Input: prompts/4-admin-ui-prompt.md
+- Output: prompts/5-admin-ui-plan.md
+- Cost : $1 plus
+- Reflections: seems complete - too much to Qa properly

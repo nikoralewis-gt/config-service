@@ -1,7 +1,6 @@
 """Pydantic models for API request/response validation."""
 
 from pydantic import BaseModel, Field
-from pydantic_extra_types.ulid import ULID
 from datetime import datetime
 from typing import Optional, List
 
@@ -26,10 +25,10 @@ class ApplicationUpdate(ApplicationBase):
 class Application(ApplicationBase):
     """Complete application model with all fields."""
     
-    id: ULID = Field(..., description="Unique application identifier (ULID)")
+    id: str = Field(..., description="Unique application identifier (ULID)")
     created_at: datetime = Field(..., description="Timestamp when application was created")
     updated_at: datetime = Field(..., description="Timestamp when application was last updated")
-    configuration_ids: List[ULID] = Field(default_factory=list, description="List of configuration IDs for this application")
+    configuration_ids: List[str] = Field(default_factory=list, description="List of configuration IDs for this application")
     
     model_config = {"from_attributes": True}
 
@@ -37,7 +36,7 @@ class Application(ApplicationBase):
 class ConfigurationBase(BaseModel):
     """Base configuration model with common fields."""
     
-    application_id: ULID = Field(..., description="ID of the application this configuration belongs to")
+    application_id: str = Field(..., description="ID of the application this configuration belongs to")
     name: str = Field(..., min_length=1, max_length=256, description="Configuration name")
     description: Optional[str] = Field(None, max_length=1024, description="Configuration description")
     settings: dict[str, str] = Field(default_factory=dict, description="Configuration settings as name/value pairs")
@@ -62,7 +61,7 @@ class ConfigurationUpdate(BaseModel):
 class Configuration(ConfigurationBase):
     """Complete configuration model with all fields."""
     
-    id: ULID = Field(..., description="Unique configuration identifier (ULID)")
+    id: str = Field(..., description="Unique configuration identifier (ULID)")
     created_at: datetime = Field(..., description="Timestamp when configuration was created")
     updated_at: datetime = Field(..., description="Timestamp when configuration was last updated")
     

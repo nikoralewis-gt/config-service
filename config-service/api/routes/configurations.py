@@ -2,12 +2,12 @@
 
 from fastapi import APIRouter, HTTPException, Request, status, Query
 from api.models import Configuration, ConfigurationCreate, ConfigurationUpdate
-from pydantic_extra_types.ulid import ULID
 from typing import List, Optional
 import sqlite3
 import json
 from datetime import datetime
 import logging
+from ulid import ULID
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -83,8 +83,8 @@ async def create_configuration(config_data: ConfigurationCreate, request: Reques
         ).fetchone()
         
         return Configuration(
-            id=ULID.from_str(row["id"]),
-            application_id=ULID.from_str(row["application_id"]),
+            id=row["id"],
+            application_id=row["application_id"],
             name=row["name"],
             description=row["description"],
             settings=json.loads(row["settings"]),
@@ -123,8 +123,8 @@ async def list_configurations(
         configurations = []
         for row in rows:
             configurations.append(Configuration(
-                id=ULID.from_str(row["id"]),
-                application_id=ULID.from_str(row["application_id"]),
+                id=row["id"],
+                application_id=row["application_id"],
                 name=row["name"],
                 description=row["description"],
                 settings=json.loads(row["settings"]),
@@ -164,8 +164,8 @@ async def get_configuration(id: str, request: Request):
             )
         
         return Configuration(
-            id=ULID.from_str(row["id"]),
-            application_id=ULID.from_str(row["application_id"]),
+            id=row["id"],
+            application_id=row["application_id"],
             name=row["name"],
             description=row["description"],
             settings=json.loads(row["settings"]),
@@ -259,8 +259,8 @@ async def update_configuration(id: str, config_data: ConfigurationUpdate, reques
         ).fetchone()
         
         return Configuration(
-            id=ULID.from_str(row["id"]),
-            application_id=ULID.from_str(row["application_id"]),
+            id=row["id"],
+            application_id=row["application_id"],
             name=row["name"],
             description=row["description"],
             settings=json.loads(row["settings"]),

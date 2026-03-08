@@ -2,7 +2,6 @@
 
 from fastapi import APIRouter, HTTPException, Request, status
 from api.models import Application, ApplicationCreate, ApplicationUpdate
-from pydantic_extra_types.ulid import ULID
 from typing import List
 import sqlite3
 from datetime import datetime
@@ -42,7 +41,6 @@ async def create_application(app_data: ApplicationCreate, request: Request):
             )
         
         # Generate ULID and timestamps
-        #app_id = str(ULID())
         import uuid
         from ulid import ULID
         app_id = str(ULID.from_uuid(uuid.uuid4()))
@@ -71,7 +69,7 @@ async def create_application(app_data: ApplicationCreate, request: Request):
         ).fetchone()
         
         return Application(
-            id=ULID.from_str(row["id"]),
+            id=row["id"],
             name=row["name"],
             description=row["description"],
             created_at=row["created_at"],
@@ -103,10 +101,10 @@ async def list_applications(request: Request):
                 (row["id"],)
             ).fetchall()
             
-            config_ids = [ULID.from_str(c["id"]) for c in config_rows]
+            config_ids = [c["id"] for c in config_rows]
             
             applications.append(Application(
-                id=ULID.from_str(row["id"]),
+                id=row["id"],
                 name=row["name"],
                 description=row["description"],
                 created_at=row["created_at"],
@@ -151,10 +149,10 @@ async def get_application(id: str, request: Request):
             (id,)
         ).fetchall()
         
-        config_ids = [ULID.from_str(c["id"]) for c in config_rows]
+        config_ids = [c["id"] for c in config_rows]
         
         return Application(
-            id=ULID.from_str(row["id"]),
+            id=row["id"],
             name=row["name"],
             description=row["description"],
             created_at=row["created_at"],
@@ -235,10 +233,10 @@ async def update_application(id: str, app_data: ApplicationUpdate, request: Requ
             (id,)
         ).fetchall()
         
-        config_ids = [ULID.from_str(c["id"]) for c in config_rows]
+        config_ids = [c["id"] for c in config_rows]
         
         return Application(
-            id=ULID.from_str(row["id"]),
+            id=row["id"],
             name=row["name"],
             description=row["description"],
             created_at=row["created_at"],

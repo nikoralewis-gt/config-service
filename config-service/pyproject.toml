@@ -24,6 +24,10 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+# ✨ This is the missing piece that fixes your build
+[tool.hatch.build.targets.wheel]
+packages = ["api"]
+
 [tool.pytest.ini_options]
 testpaths = ["api", "migrations"]
 python_files = "*_test.py"

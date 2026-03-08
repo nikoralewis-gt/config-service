@@ -43,8 +43,10 @@ async def create_application(app_data: ApplicationCreate, request: Request):
         
         # Generate ULID and timestamps
         #app_id = str(ULID())
-        from ulid import ULID
-        app_id = str(ULID.from_uuid())
+import uuid
+from ulid import ULID
+
+app_id = str(ULID.from_uuid(uuid.uuid4()))
         now = datetime.utcnow()
         
         # Insert application

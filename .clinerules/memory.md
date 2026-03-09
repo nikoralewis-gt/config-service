@@ -14,19 +14,33 @@ The Memory consists of core files and optional context files, all in Markdown fo
    - Defines core requirements and goals
    - Source of truth for project scope
 
-4. `memory/ARCHITECTURE.md`
+2. `memory/DOMAIN.md`
+   - Domain concepts and entities
+   - Business rules and constraints
+   - Ubiquitous language
+   - Key workflows
+   - Scope boundaries
+
+3. `memory/ARCHITECTURE.md`
    - System architecture
    - Key technical decisions
    - Design patterns in use
    - Component relationships
    - Critical implementation paths
 
-5. `memory/TECHNICAL.md`
+4. `memory/TECHNICAL.md`
    - Technologies used
    - Development setup
    - Technical constraints
    - Dependencies
    - Tool usage patterns
+
+5. `memory/TESTING.md`
+   - Testing philosophy and strategy
+   - Test organization and patterns
+   - Coverage expectations
+   - Testing conventions
+   - CI/CD integration
 
 If I have not already done so, I should read the contents of all of the files that are available NOW.
 
@@ -64,8 +78,10 @@ REMEMBER: After every memory reset, I begin completely fresh. The Memory is my o
    - If memory files are NOT read, ALL processing MUST HALT
    - Immediate action: Read memory files in this EXACT order:
      a. memory/ABOUT.md
-     b. memory/ARCHITECTURE.md
-     c. memory/TECHNICAL.md
+     b. memory/DOMAIN.md
+     c. memory/ARCHITECTURE.md
+     d. memory/TECHNICAL.md
+     e. memory/TESTING.md
 
 3. ENFORCEMENT RULES
    - Reading is NOT optional, it is MANDATORY
@@ -110,8 +126,10 @@ Examples of valid commands:
 
 The assistant can load memory selectively based on the user's request type:
 
-- Planning tasks → load ABOUT and ARCHITECTURE only.
-- Implementation tasks → load TECHNICAL and TESTING only.
+- Planning tasks → load ABOUT, DOMAIN, and ARCHITECTURE.
+- Implementation tasks → load TECHNICAL and TESTING.
 - Domain questions → load DOMAIN only.
 - High‑level summaries → load ABOUT only.
+- Architecture discussions → load ARCHITECTURE only.
+- Testing discussions → load TESTING only.
 - When the user references a specific memory file → load only that file.

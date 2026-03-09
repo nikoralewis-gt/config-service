@@ -43,8 +43,11 @@ Environment-based configuration using Pydantic Settings, supporting `.env` files
 **Route Handlers**  
 Modular route handlers for applications and configurations, organized under `api/routes/`. Each handler manages CRUD operations for its domain entity with proper HTTP status codes and error handling.
 
-**Admin UI (Future/External)**  
-An administrative web interface for managing configuration keys and values, intended to integrate with the REST API. Not part of the core service implementation.
+**Admin UI**  
+An administrative web interface for managing configuration keys and values, built with Web Components (Custom Elements + Shadow DOM) and TypeScript. Provides a user-friendly interface for CRUD operations on applications and configurations. Consumes the Config Hub Client Library for API communication.
+
+**Config Hub Client Library**  
+A standalone, reusable TypeScript library (`@config-hub/client`) that provides a type-safe interface to the Config Hub REST API. Uses native fetch API with zero dependencies. Framework-agnostic design allows it to be consumed by any JavaScript application. Exports `ConfigServiceClient` class and all API type definitions.
 
 ## Data Flow
 <!-- How data moves through the system, from request to response -->

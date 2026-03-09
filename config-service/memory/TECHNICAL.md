@@ -21,6 +21,15 @@
 - **Build Tool**: Vite
 - **Testing**: Vitest
 - **No Framework**: Intentionally framework-less (no React, Angular, Vue)
+- **API Client**: Config Hub Client Library (`@config-hub/client`)
+
+### Client Library
+- **Language**: TypeScript
+- **Package Name**: `@config-hub/client`
+- **HTTP Client**: Native fetch API (zero dependencies)
+- **Module Format**: ES Modules (ESM)
+- **Type Definitions**: Full TypeScript declarations included
+- **Distribution**: Local file dependency (future: npm package)
 
 ## Development Environment
 

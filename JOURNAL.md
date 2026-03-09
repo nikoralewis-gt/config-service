@@ -1,5 +1,7 @@
 # Development Journal
 
+## ---MODULE 1
+
 ## Setup
 
 ### Initial Environment Setup
@@ -74,3 +76,16 @@
 - Model: Claude Sonnet 4
 - Input: prompts/5-admin-ui-plan.md
 - Output: ui/
+
+## ---MODULE 2
+
+## Populate the Architecture Context
+- Prompt: Read @/memory/ABOUT.md and @/memory/ARCHITECTURE.md, then follow the instructions at the top of ARCHITECTURE.md to populate the document.
+- Tool: Cline
+- Mode: Plan
+- Context: Clean
+- Model: Claude 3.7 Sonnet
+- Input: memory/ABOUT.md, memory/ARCHITECTURE.md
+- Output: memory/ARCHITECTURE.md (or a new file if you prefer)
+- Cost: 0.57
+- Reflections: Good way to summarie what was actually already implemented. 

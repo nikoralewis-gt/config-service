@@ -54,6 +54,97 @@ make migrate
 make run
 ```
 
+## Local Development Setup
+
+### Complete System Startup
+
+The Config Hub system consists of three components that must be started in a specific order:
+
+#### 1. Config Service API (Required - Start First)
+```bash
+cd config-service
+uv sync
+cp .env.example .env
+make migrate
+make run
+```
+- **URL:** http://localhost:8000
+- **API Docs:** http://localhost:8000/docs
+- **Port:** 8000 (configurable via `API_PORT` in `.env`)
+
+#### 2. Config Service Client Library (Required - Build Before UI)
+```bash
+cd config-service-client
+npm install
+npm run build
+```
+- **Output:** `dist/` directory with compiled JavaScript and TypeScript declarations
+- **Note:** Must be rebuilt after any source changes
+
+#### 3. Admin UI (Depends on API + Client Library)
+```bash
+cd ui
+npm install
+npm run dev
+```
+- **URL:** http://localhost:3000
+- **Port:** 3000 (configurable in `vite.config.ts`)
+- **Proxy:** Automatically forwards `/api` requests to http://localhost:8000
+
+### Component Dependencies
+
+```
+Admin UI (port 3000)
+    ↓ uses
+Config Service Client Library (local file dependency)
+    ↓ calls
+Config Service API (port 8000)
+    ↓ stores data in
+SQLite Database (data/config.db)
+```
+
+### Verification Checklist
+
+After startup, verify:
+- [ ] API running: http://localhost:8000/docs accessible
+- [ ] Client library built: `config-service-client/dist/` exists
+- [ ] UI running: http://localhost:3000 accessible
+- [ ] UI can communicate with API (check browser console for errors)
+
+### Common Startup Issues
+
+**Port conflicts:**
+- API: Change `API_PORT` in `config-service/.env`
+- UI: Change `server.port` in `ui/vite.config.ts`
+
+**Client library not found:**
+- Rebuild: `cd config-service-client && npm run build`
+- Reinstall UI deps: `cd ui && npm install`
+
+**API connection failed:**
+- Verify API is running on port 8000
+- Check Vite proxy configuration in `ui/vite.config.ts`
+- Check browser console for CORS errors
+
+### Development Workflow
+
+**When changing API code:**
+1. Edit files in `config-service/api/`
+2. FastAPI auto-reloads (check terminal for errors)
+3. Test changes via http://localhost:8000/docs
+
+**When changing client library:**
+1. Edit files in `config-service-client/src/`
+2. Rebuild: `npm run build`
+3. Restart UI dev server if needed
+
+**When changing UI code:**
+1. Edit files in `ui/src/`
+2. Vite auto-reloads (check browser console)
+3. Test changes at http://localhost:3000
+
+For complete getting started instructions, see the root-level `GETTING_STARTED.md` file.
+
 ## Database Configuration
 
 ### Connection

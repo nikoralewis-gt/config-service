@@ -30,7 +30,7 @@ Config Hub is a REST API-based configuration management service built on a three
 
 **REST API (FastAPI)**  
 The primary interface to the system, built with FastAPI and Pydantic for type-safe request/response handling. Exposes versioned endpoints under `/api/v1` for applications and configurations. Includes health check and root endpoints, automatic OpenAPI documentation, and comprehensive validation.
-
+create a TECHNICAL.md file in the memory directory, in the same style as the architecture document .. just include headings first that 
 **Database Layer (SQLite)**  
 A lightweight, file-based relational database storing applications and configurations. Uses direct SQL queries for transparency and control, avoiding ORM overhead. Managed through a `Database` class that handles connections and query execution.
 

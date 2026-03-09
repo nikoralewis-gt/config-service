@@ -85,3 +85,33 @@ REMEMBER: After every memory reset, I begin completely fresh. The Memory is my o
 
 ### RATIONALE
 Memory files are the SOLE SOURCE OF TRUTH for project context after a system reset. Bypassing this reading process compromises the entire system's understanding and effectiveness.
+
+## Trigger Phrases (Consistent Format)
+
+additionally specific commands can be used to update memory files. All memory updates must use the following pattern:
+
+"Memory update: <FILE> — <INSTRUCTION>"
+
+Where <FILE> is one of:
+- ABOUT
+- DOMAIN
+- ARCHITECTURE
+- TECHNICAL
+- TESTING
+
+Examples of valid commands:
+- "Memory update: ABOUT — add project background details."
+- "Memory update: DOMAIN — record this domain rule."
+- "Memory update: ARCHITECTURE — incorporate this new boundary decision."
+- "Memory update: TECHNICAL — capture this implementation pattern."
+- "Memory update: TESTING — add this testing strategy."
+
+## Conditional Memory Loading Rules
+
+The assistant can load memory selectively based on the user's request type:
+
+- Planning tasks → load ABOUT and ARCHITECTURE only.
+- Implementation tasks → load TECHNICAL and TESTING only.
+- Domain questions → load DOMAIN only.
+- High‑level summaries → load ABOUT only.
+- When the user references a specific memory file → load only that file.
